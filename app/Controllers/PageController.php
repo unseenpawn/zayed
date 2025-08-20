@@ -5,12 +5,14 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use App\Services\ContentRepository;
 use App\Services\Language;
+use App\Services\BlogRepository;
 
 class PageController
 {
     private Environment $twig;
     private ContentRepository $content;
     private Language $langService;
+    private BlogRepository $blog;
 
     public function __construct(Language $langService)
     {
@@ -18,6 +20,7 @@ class PageController
         $this->twig = new Environment($loader);
         $this->content = new ContentRepository();
         $this->langService = $langService;
+        $this->blog = new BlogRepository();
     }
 
     public function show(string $lang, string $slug = 'index'): void
@@ -34,6 +37,10 @@ class PageController
             ]);
             return;
         }
+        $posts = [];
+        if ($slug === 'index') {
+            $posts = $this->blog->visible($lang, new \DateTime());
+        }
         echo $this->twig->render('page.twig', [
             'lang' => $lang,
             'title' => $data['title'],
@@ -42,7 +49,8 @@ class PageController
             'nav' => require __DIR__ . "/../../config/navigation.$lang.php",
             'switch' => $this->langService->switchUrl($lang, $slug),
             'dir' => $this->langService->dir($lang),
-            'slug' => $slug
+            'slug' => $slug,
+            'posts' => $posts
         ]);
     }
 }

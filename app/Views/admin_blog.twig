@@ -1,0 +1,24 @@
+{% extends 'admin_base.twig' %}
+{% block content %}
+<h1 class="mb-4">Neuer Blogeintrag</h1>
+{% if message %}<div class="alert alert-success">{{ message }}</div>{% endif %}
+<form method="post" style="max-width:600px;">
+  <div class="mb-3">
+    <label class="form-label">Titel</label>
+    <input type="text" class="form-control" name="title" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Inhalt</label>
+    <textarea class="form-control" name="content" rows="5" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Sichtbar ab</label>
+    <input type="date" class="form-control" name="start" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Sichtbar bis</label>
+    <input type="date" class="form-control" name="end" required>
+  </div>
+  <button type="submit" class="btn btn-success">Speichern</button>
+</form>
+{% endblock %}
