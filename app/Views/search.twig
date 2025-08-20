@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+{% block content %}
+  <form class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="{{ lang == 'de' ? 'Suche' : 'بحث' }}">
+      <button class="btn btn-outline-secondary" type="submit">{{ lang == 'de' ? 'Suchen' : 'بحث' }}</button>
+    </div>
+  </form>
+  {% if query %}
+    <h2 class="mb-3">{{ lang == 'de' ? 'Ergebnisse' : 'نتائج' }}</h2>
+    {% if results %}
+      <ul>
+        {% for r in results %}
+          <li><a href="/{{ lang }}/{{ r.slug }}">{{ r.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>{{ lang == 'de' ? 'Keine Treffer' : 'لا توجد نتائج' }}</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}

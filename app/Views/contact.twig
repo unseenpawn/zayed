@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+{% block content %}
+  {{ content|raw }}
+  {% if success %}
+    <div class="alert alert-success">{{ lang == 'de' ? 'Nachricht gesendet.' : 'تم الإرسال' }}</div>
+  {% endif %}
+  <form method="post" class="mt-4">
+    <div class="mb-3">
+      <label class="form-label">{{ lang == 'de' ? 'Name' : 'الاسم' }}</label>
+      <input type="text" name="name" class="form-control{% if 'name' in errors %} is-invalid{% endif %}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ lang == 'de' ? 'E-Mail' : 'البريد الإلكتروني' }}</label>
+      <input type="email" name="email" class="form-control{% if 'email' in errors %} is-invalid{% endif %}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ lang == 'de' ? 'Nachricht' : 'الرسالة' }}</label>
+      <textarea name="message" class="form-control{% if 'message' in errors %} is-invalid{% endif %}" rows="5"></textarea>
+    </div>
+    <button class="btn btn-primary">{{ lang == 'de' ? 'Senden' : 'إرسال' }}</button>
+  </form>
+{% endblock %}
