@@ -1,1 +1,14 @@
-body { font-family: 'Noto Naskh Arabic', serif; padding-top: 4rem; direction: rtl; text-align: right; }
+body {
+  font-family: 'Noto Naskh Arabic', serif;
+  padding-top: 4rem;
+  direction: rtl;
+  text-align: right;
+  background-color: #f8f9fa;
+}
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1502209524162-123a52f41c71?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
