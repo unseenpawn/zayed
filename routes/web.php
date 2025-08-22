@@ -6,6 +6,10 @@ use App\Controllers\SearchController;
 use App\Controllers\AuthController;
 use App\Controllers\AdminController;
 
+$r->addRoute('GET', '/', function() {
+    header('Location: /de');
+    exit;
+});
 $r->addRoute(['GET','POST'], '/login', [AuthController::class, 'login']);
 $r->addRoute('GET', '/logout', [AuthController::class, 'logout']);
 $r->addRoute(['GET','POST'], '/admin/blog', [AdminController::class, 'blog']);
